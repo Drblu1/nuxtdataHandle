@@ -15,6 +15,7 @@ export default {
     PostList
   },
   asyncData(context, callback) {
+    console.log("Async dans index est excécuté");
     setTimeout( () => {
       //THIS !!!!!!
       callback(null, {
