@@ -14,10 +14,11 @@ export default {
   components: {
     PostList
   },
-  asyncData() {
+  asyncData(context, callback) {
     setTimeout( () => {
       //THIS !!!!!!
-      return { loadedPosts: [
+      callback(null, {
+        loadedPosts: [
           {
             id: '1',
             title:'wejdene',
@@ -31,7 +32,8 @@ export default {
             thumbnail: 'https://lh3.googleusercontent.com/5PBEtJH72OUM9pbwnZC-MfCcb5-XGVTWLbNjNLbrLmbNmXe-p7geFws6vvdXqddAGvM'
           }
         ]
-      }
+      })
+
     },1500)
   },
 /*  data() {
