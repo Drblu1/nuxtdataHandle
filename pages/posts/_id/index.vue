@@ -1,12 +1,12 @@
 <template>
   <div class="single-post-page">
     <section class="post">
-      <h1 class="post-title">Title of the Post</h1>
+      <h1 class="post-title">{{loadedPost.title}}</h1>
       <div class="post-details">
-        <div class="post-detail">Last updated on XXX</div>
-        <div class="post-detail">Written by NAME</div>
+        <div class="post-detail">Last updated on {{ loadedPost.updatedDate }}</div>
+        <div class="post-detail">Written by {{ loadedPost.author }}</div>
       </div>
-      <p class="post-content">Content of the post</p>
+      <p class="post-content">{{ loadedPost.content }}</p>
     </section>
     <section class="post-feedback">
       <p>Let me know what you think about the post, send a mail to <a href="mailto:feedback@my-awesome-domain.com">feedback@my-awesome-domain.com</a>.</p>
@@ -14,6 +14,25 @@
   </div>
 </template>
 
+<script>
+export default {
+  asyncData(context, callback) {
+    setTimeout(() => {
+      callback(null, {
+        loadedPost: {
+          id: '1',
+          title:'Best app ever (ID:' +context.params.id +')',
+          previewText: 'This really changed my life <3',
+          author:'Me',
+          updatedDate: new Date(),
+          content: 'Some dummy text',
+          thumbnail: 'https://lh3.googleusercontent.com/5PBEtJH72OUM9pbwnZC-MfCcb5-XGVTWLbNjNLbrLmbNmXe-p7geFws6vvdXqddAGvM',
+        }
+      })
+    }, 1000)
+  }
+}
+</script>
 <style scoped>
 .single-post-page {
   padding: 30px;
