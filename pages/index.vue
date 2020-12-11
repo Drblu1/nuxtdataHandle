@@ -14,28 +14,35 @@ export default {
   components: {
     PostList
   },
-  asyncData(context, callback) {
+  asyncData(context) {
+    return new Promise(((resolve, reject) => {
+      setTimeout( () => {
+        //THIS !!!!!!
+        resolve({
+          loadedPosts: [
+            {
+              id: '1',
+              title:'wejdene',
+              previewText: 'this is our first post',
+              thumbnail: 'https://static.pexels.com/photos/270348/pexels-photo-270348.jpeg'
+            },
+            {
+              id: '2',
+              title:'Best app ever',
+              previewText: 'This really changed my life <3',
+              thumbnail: 'https://lh3.googleusercontent.com/5PBEtJH72OUM9pbwnZC-MfCcb5-XGVTWLbNjNLbrLmbNmXe-p7geFws6vvdXqddAGvM'
+            }
+          ]
+        })
+        /*reject(new Error())*/
+      },1500)
+    }))
+      .then(data => {return data})
+      .catch(reason => {
+      context.error(new Error())
+    });
     console.log("Async dans index est excécuté");
-    setTimeout( () => {
-      //THIS !!!!!!
-      callback(new Error(), {
-        loadedPosts: [
-          {
-            id: '1',
-            title:'wejdene',
-            previewText: 'this is our first post',
-            thumbnail: 'https://static.pexels.com/photos/270348/pexels-photo-270348.jpeg'
-          },
-          {
-            id: '2',
-            title:'Best app ever',
-            previewText: 'This really changed my life <3',
-            thumbnail: 'https://lh3.googleusercontent.com/5PBEtJH72OUM9pbwnZC-MfCcb5-XGVTWLbNjNLbrLmbNmXe-p7geFws6vvdXqddAGvM'
-          }
-        ]
-      })
 
-    },1500)
   },
 /*  data() {
     return {
