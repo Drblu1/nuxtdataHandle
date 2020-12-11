@@ -18,7 +18,7 @@ export default {
     console.log("Async dans index est excécuté");
     setTimeout( () => {
       //THIS !!!!!!
-      callback(null, {
+      callback(new Error(), {
         loadedPosts: [
           {
             id: '1',
